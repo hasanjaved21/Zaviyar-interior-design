@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Zaviyar Interior Design | Full Portfolio</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Swiper.js for Testimonials Slider -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #0A1128;
+      color: #e0e4f0;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --gold: #D4AF37;
+      --gold-light: #F5E18C;
+      --gold-dark: #AA7C11;
+      --navy-dark: #020617;
+      --navy-mid: #0A1A3A;
+      --navy-card: rgba(7, 21, 48, 0.85);
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0A1128; }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+
+    .container {
+      max-width: 1350px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* --- Navigation (Desktop: standard navbar, Mobile: hamburger) --- */
+    .navbar {
+      background: linear-gradient(135deg, #020617cc 0%, #0A1128cc 100%);
+      padding: 0.8rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+    }
+    .nav-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-img {
+      height: 45px;
+      width: auto;
+      border-radius: 8px;
+      filter: drop-shadow(0 0 4px rgba(212,175,55,0.6));
+    }
+    /* REDUCED FONT SIZE for website name and tagline */
+    .logo-text h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #fff 30%, var(--gold) 80%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.2;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .logo-text p {
+      font-size: 0.6rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: var(--gold-light);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: #f0f2fa;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: 0.2s;
+      position: relative;
+    }
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: 0.3s;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    .menu-icon {
+      display: none;
+      font-size: 1.8rem;
+      color: var(--gold);
+      cursor: pointer;
+      z-index: 1002;
+    }
+    /* Sidebar Menu (Mobile Right) */
+    .sidebar-menu {
+      position: fixed;
+      top: 0;
+      right: -350px;
+      width: 280px;
+      height: 100vh;
+      background: linear-gradient(145deg, #030c1f 0%, #07122e 100%);
+      backdrop-filter: blur(12px);
+      z-index: 2000;
+      transition: right 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      padding: 2rem 1.5rem;
+      box-shadow: -5px 0 30px rgba(0,0,0,0.7);
+      border-left: 1px solid rgba(212,175,55,0.5);
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-menu.active { right: 0; }
+    .close-sidebar {
+      text-align: right;
+      font-size: 1.6rem;
+      color: var(--gold);
+      cursor: pointer;
+      margin-bottom: 1.8rem;
+    }
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .sidebar-nav a {
+      color: #f0f2fa;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: 0.2s;
+      width: fit-content;
+      letter-spacing: 0.5px;
+      padding: 4px 0;
+    }
+    .sidebar-nav a:hover { color: var(--gold); border-bottom: 1px solid var(--gold); }
+    .social-icons-side {
+      margin-top: auto;
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      padding: 1rem 0;
+    }
+    .social-icons-side a {
+      font-size: 1.4rem;
+      color: #ccd6f0;
+      transition: 0.2s;
+    }
+    .social-icons-side a:hover { color: var(--gold); transform: scale(1.1); }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(3px);
+      z-index: 1500;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+    }
+    .overlay.active { opacity: 1; visibility: visible; }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-slides {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .hero-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+    .hero-slide.active { opacity: 1; }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(2, 6, 23, 0.65);
+      z-index: 1;
+    }
+    .hero .container { position: relative; z-index: 2; }
+    .hero-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+    .hero-content {
+      flex: 1.2;
+      background: rgba(3, 12, 31, 0.5);
+      backdrop-filter: blur(6px);
+      padding: 2rem;
+      border-radius: 28px;
+      border-left: 3px solid var(--gold);
+    }
+    .hero-badge { color: var(--gold); letter-spacing: 3px; margin-bottom: 1rem; font-weight: 500; font-size: 0.8rem;}
+    .hero-content h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #fff, var(--gold-light));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .tagline { font-size: 1rem; color: var(--gold); margin: 0.8rem 0 1.2rem; font-weight: 500; }
+    .btn-primary {
+      background: var(--gold);
+      border: none;
+      padding: 0.7rem 1.8rem;
+      font-weight: 700;
+      color: #0A1128;
+      border-radius: 40px;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.9rem;
+    }
+    .btn-primary:hover { transform: scale(1.02); background: #e6bc3a; }
+
+    /* Statistics Section */
+    .statistics {
+      padding: 3rem 0;
+      background: linear-gradient(135deg, #071530 0%, #030c1f 100%);
+      border-bottom: 1px solid rgba(212,175,55,0.2);
+      border-top: 1px solid rgba(212,175,55,0.2);
+    }
+    .stats-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .stat-item {
+      flex: 1;
+      min-width: 150px;
+      padding: 1rem;
+      background: rgba(255,255,255,0.03);
+      border-radius: 28px;
+      backdrop-filter: blur(4px);
+      transition: transform 0.3s;
+    }
+    .stat-item:hover { transform: translateY(-5px); }
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #fff, var(--gold-light));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.2;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 1px;
+      margin-top: 0.5rem;
+      text-transform: uppercase;
+    }
+    .stat-icon { font-size: 1.8rem; color: var(--gold); margin-bottom: 0.5rem; }
+
+    /* Portfolio Section */
+    .portfolio {
+      padding: 4rem 0;
+      background: linear-gradient(to bottom, #030c1f, #071530);
+    }
+    .section-title {
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      margin-bottom: 2.5rem;
+    }
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0.6rem auto 0;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.8rem;
+    }
+    .portfolio-item {
+      background: rgba(7, 21, 48, 0.6);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(212,175,55,0.3);
+      transition: 0.3s;
+      backdrop-filter: blur(2px);
+    }
+    .portfolio-item:hover {
+      transform: translateY(-8px);
+      border-color: var(--gold);
+      box-shadow: 0 20px 30px -12px black;
+    }
+    .portfolio-item img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+      transition: 0.4s;
+    }
+    .portfolio-info {
+      padding: 1rem;
+      text-align: center;
+    }
+    .portfolio-info h3 {
+      font-size: 1.2rem;
+      color: var(--gold-light);
+      margin-bottom: 0.3rem;
+    }
+    .portfolio-info p {
+      font-size: 0.8rem;
+    }
+
+    /* Testimonials Swiper */
+    .testimonials {
+      padding: 4rem 0;
+      background: linear-gradient(135deg, #D4AF37 0%, #B8860B 50%, #DAA520 100%);
+      position: relative;
+    }
+    .testimonials .section-title {
+      color: #0A1128;
+      text-shadow: 0 1px 1px rgba(255,255,200,0.3);
+    }
+    .testimonials .section-title:after { background: #0A1128; }
+    .testimonial-card {
+      background: rgba(2, 6, 23, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 1.8rem;
+      border-radius: 24px;
+      text-align: center;
+      border: 1px solid rgba(212,175,55,0.6);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      color: #e0e4f0;
+    }
+    .testimonial-card i { font-size: 1.8rem; color: var(--gold-light); }
+    .testimonial-card p { font-size: 0.9rem; }
+    .client-name { font-weight: 700; color: var(--gold-light); margin-top: 0.5rem; font-size: 0.85rem; }
+    .swiper-pagination-bullet-active { background: #0A1128 !important; }
+    .swiper-button-next, .swiper-button-prev { display: none !important; }
+
+    /* Why Choose Us Section */
+    .why-choose-us {
+      padding: 4rem 0;
+      background: linear-gradient(135deg, #030c1f 0%, #071530 100%);
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem;
+      margin-top: 1.5rem;
+    }
+    .feature-card {
+      background: rgba(7, 21, 48, 0.7);
+      backdrop-filter: blur(4px);
+      padding: 1.5rem;
+      border-radius: 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    .feature-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--gold);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+    .feature-icon {
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .feature-card h3 {
+      font-size: 1.2rem;
+      color: var(--gold-light);
+      margin-bottom: 0.6rem;
+      font-weight: 700;
+    }
+    .feature-card p {
+      font-size: 0.85rem;
+      color: #cbd5f0;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    .footer {
+      background: #020617;
+      padding: 2.5rem 0 1.8rem;
+    }
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+    .footer-col { flex: 1; min-width: 180px; }
+    .footer-col h4 { color: var(--gold); margin-bottom: 1rem; font-size: 1rem; }
+    .footer-col p, .footer-col a {
+      color: #b9c2e0;
+      font-size: 0.8rem;
+      text-decoration: none;
+      line-height: 1.6;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 0.5rem;
+    }
+    .footer-col i { width: 22px; color: var(--gold); font-size: 0.85rem; }
+    .footer-col a:hover { color: var(--gold-light); }
+    .footer-bottom {
+      text-align: center;
+      margin-top: 1.8rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(212,175,55,0.2);
+      font-size: 0.7rem;
+    }
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #25D366;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 53px;
+      font-size: 28px;
+      color: white;
+      z-index: 99;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.3);
+    }
+    
+    @media (max-width: 850px) {
+      .nav-links { display: none; }
+      .menu-icon { display: block; }
+      .hero-content h1 { font-size: 2rem; }
+      .logo-img { height: 38px; }
+      .logo-text h1 { font-size: 1rem; }
+      .logo-text p { font-size: 0.5rem; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .sidebar-menu { width: 260px; padding: 1.5rem 1.2rem; }
+      .sidebar-nav a { font-size: 0.9rem; }
+      .stat-number { font-size: 2rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .hero-content { padding: 1.5rem; }
+    }
+    @media (min-width: 851px) {
+      .menu-icon { display: none !important; }
+      .sidebar-menu, .overlay { display: none; }
+      .nav-links { display: flex !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+<div class="sidebar-menu" id="sidebarMenu">
+  <div class="close-sidebar" id="closeSidebar"><i class="fas fa-times"></i></div>
+  <div class="sidebar-nav">
+    <a href="#home">Home</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#whyus">Why Us</a>
+    <a href="#footer">Contact</a>
+  </div>
+  <div class="social-icons-side">
+    <a href="https://www.facebook.com/p/Zaviyar-interior-design-100065485389451/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  </div>
+</div>
+
+<nav class="navbar">
+  <div class="container nav-flex">
+    <div class="logo-area">
+      <img src="https://i.postimg.cc/yN8h6Pgn/438172861-794452042747635-4097795407939151046-n.jpg" alt="Zaviyar Interior Logo" class="logo-img" onerror="this.src='https://placehold.co/60x60?text=Z'">
+      <div class="logo-text">
+        <h1>ZAVIYAR INTERIOR DESIGN</h1>
+        <p>best quality in affordable price</p>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#whyus">Why Us</a></li>
+      <li><a href="#footer">Contact</a></li>
+    </ul>
+    <div class="menu-icon" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+  <div class="hero-slides" id="heroSlides">
+    <div class="hero-slide" style="background-image: url('https://i.postimg.cc/vZK0gkrf/image.png');"></div>
+    <div class="hero-slide" style="background-image: url('https://i.postimg.cc/pVkY53xT/image.png');"></div>
+    <div class="hero-slide" style="background-image: url('https://i.postimg.cc/4dsVmQSW-/image.png');"></div>
+  </div>
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-crown"></i> SINCE 2015</div>
+      <h1>Transform Your Space<br>Into Masterpiece</h1>
+      <div class="tagline"><i class="fas fa-gem"></i> "best quality in affordable price"</div>
+      <p>Premium interior designs with a touch of elegance. Luxury homes to commercial projects — crafted beyond expectations.</p>
+      <button class="btn-primary" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">View Portfolio</button>
+    </div>
+  </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="statistics">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item"><div class="stat-icon"><i class="fas fa-smile-beam"></i></div><div class="stat-number"><span class="counter" data-target="73">0</span>+</div><div class="stat-label">Satisfied Clients</div></div>
+      <div class="stat-item"><div class="stat-icon"><i class="fas fa-home"></i></div><div class="stat-number"><span class="counter" data-target="128">0</span>+</div><div class="stat-label">Projects Completed</div></div>
+      <div class="stat-item"><div class="stat-icon"><i class="fas fa-award"></i></div><div class="stat-number"><span class="counter" data-target="15">0</span>+</div><div class="stat-label">Design Awards</div></div>
+      <div class="stat-item"><div class="stat-icon"><i class="fas fa-calendar-alt"></i></div><div class="stat-number"><span class="counter" data-target="9">0</span>+</div><div class="stat-label">Years Excellence</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio Section -->
+<section class="portfolio" id="portfolio">
+  <div class="container">
+    <h2 class="section-title">Our Signature Portfolio</h2>
+    <div class="portfolio-grid">
+      <div class="portfolio-item"><img src="https://i.postimg.cc/G2nwYHF3/image.png" alt="Elegant Living Space"><div class="portfolio-info"><h3>Golden Luxury Lounge</h3><p>Modern elegance meets classic comfort</p></div></div>
+      <div class="portfolio-item"><img src="https://i.postimg.cc/8Pz8h86Y/image.png" alt="Contemporary Interior"><div class="portfolio-info"><h3>Royal Bedroom Suite</h3><p>Navy & gold harmonious palette</p></div></div>
+      <div class="portfolio-item"><img src="https://i.postimg.cc/vZK0gkrf/image.png" alt="Modern Living Room"><div class="portfolio-info"><h3>Velvet Dining Hall</h3><p>Affordable opulence design</p></div></div>
+      <div class="portfolio-item"><img src="https://i.postimg.cc/pVkY53xT/image.png" alt="Elegant Dining Area"><div class="portfolio-info"><h3>Modern Minimalist</h3><p>Clean lines & gold accents</p></div></div>
+      <div class="portfolio-item"><img src="https://i.postimg.cc/4dsVmQSW-/image.png" alt="Luxury Bedroom"><div class="portfolio-info"><h3>Ambassador Suite</h3><p>Luxury redefined with texture</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Slider Section -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <h2 class="section-title">What Our Clients Say</h2>
+    <div class="swiper testimonialSwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><div class="testimonial-card"><i class="fas fa-quote-right"></i><p>"Zaviyar's team transformed our house into a luxurious sanctuary. Attention to detail is breathtaking!"</p><div class="client-name">— Fatima Z., Karachi</div></div></div>
+        <div class="swiper-slide"><div class="testimonial-card"><i class="fas fa-quote-right"></i><p>"Affordable luxury that actually looks premium. Perfectly matched our vision. Highly recommend."</p><div class="client-name">— Ahmed R., Malir</div></div></div>
+        <div class="swiper-slide"><div class="testimonial-card"><i class="fas fa-quote-right"></i><p>"Best quality interiors I've seen. They listened to our budget and delivered remarkable work."</p><div class="client-name">— Sana T., DHA</div></div></div>
+        <div class="swiper-slide"><div class="testimonial-card"><i class="fas fa-quote-right"></i><p>"Modern + elegant. The navy & gold combination is stunning! Thank you Zaviyar team."</p><div class="client-name">— Usman K., Gulshan</div></div></div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="why-choose-us" id="whyus">
+  <div class="container">
+    <h2 class="section-title">Why Choose Us</h2>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-hand-holding-heart"></i></div><h3>Best Quality in Affordable Price</h3><p>Premium materials, expert craftsmanship, and budget-friendly solutions that don't compromise on luxury.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-paint-brush"></i></div><h3>Bespoke Designs</h3><p>Every project is uniquely tailored to your taste, blending modern elegance with timeless sophistication.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-clock"></i></div><h3>On-Time Delivery</h3><p>We respect your time. Our streamlined process ensures projects are completed within committed deadlines.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-users"></i></div><h3>Dedicated Support</h3><p>From concept to completion, our team provides personalized guidance and transparent communication.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-gem"></i></div><h3>Premium Materials</h3><p>We source only the finest materials — rich textures, durable finishes, and signature gold accents.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-star"></i></div><h3>Proven Excellence</h3><p>100+ happy projects and 73+ satisfied clients speak for our commitment to perfection.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer" id="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>Zaviyar Interior Design</h4>
+        <p><i class="fas fa-map-marker-alt"></i> Shop #6 Hussainia safarakhana, saudabad opposite hafiz sweets Malir Tanque Karachi, Karachi, Pakistan</p>
+        <p><i class="fas fa-phone-alt"></i> <a href="tel:+923130222400">+92 313 0222400</a></p>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:sheryartareen123@gmail.com">sheryartareen123@gmail.com</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <p><a href="#home">Home</a></p>
+        <p><a href="#portfolio">Portfolio</a></p>
+        <p><a href="#testimonials">Testimonials</a></p>
+        <p><a href="#whyus">Why Us</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <p><i class="fab fa-facebook-f"></i> <a href="https://www.facebook.com/p/Zaviyar-interior-design-100065485389451/" target="_blank">Facebook</a></p>
+        <p><i class="fab fa-instagram"></i> <a href="#">Instagram</a></p>
+        <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/923130222400">WhatsApp</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 Zaviyar Interior Design — All Rights Reserved. Best quality in affordable price.</p></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/923130222400?text=Hello! I'm interested in your luxury interior design services." class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  // Hero Slides
+  const slides = document.querySelectorAll('.hero-slide');
+  let currentIndex = 0;
+  function showNextSlide() {
+    if(!slides.length) return;
+    slides[currentIndex].classList.remove('active');
+    currentIndex = (currentIndex + 1) % slides.length;
+    slides[currentIndex].classList.add('active');
+  }
+  if (slides.length) { slides[0].classList.add('active'); setInterval(showNextSlide, 2000); }
+
+  // Counters
+  const counters = document.querySelectorAll('.counter');
+  let started = false;
+  function startCounters() {
+    if (started) return;
+    started = true;
+    counters.forEach(counter => {
+      const updateCount = () => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        let current = parseInt(counter.innerText) || 0;
+        const increment = target / 60;
+        if (current < target) {
+          current = Math.ceil(current + increment);
+          counter.innerText = current;
+          setTimeout(updateCount, 20);
+        } else { counter.innerText = target; }
+      };
+      updateCount();
+    });
+  }
+  const statsSection = document.querySelector('.statistics');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) { startCounters(); observer.unobserve(entry.target); } });
+  }, { threshold: 0.3 });
+  if (statsSection) observer.observe(statsSection);
+
+  // Testimonials Swiper
+  new Swiper('.testimonialSwiper', {
+    loop: true, autoplay: { delay: 4000, disableOnInteraction: false },
+    pagination: { el: '.swiper-pagination', clickable: true },
+    slidesPerView: 1, spaceBetween: 20,
+    breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+  });
+
+  // Sidebar
+  const hamburger = document.getElementById('hamburgerBtn');
+  const sidebar = document.getElementById('sidebarMenu');
+  const overlayDiv = document.getElementById('overlay');
+  const closeBtn = document.getElementById('closeSidebar');
+  function openSidebar() { if(window.innerWidth <= 850) { sidebar.classList.add('active'); overlayDiv.classList.add('active'); document.body.style.overflow = 'hidden'; } }
+  function closeSidebarFunc() { sidebar.classList.remove('active'); overlayDiv.classList.remove('active'); document.body.style.overflow = ''; }
+  if(hamburger) hamburger.addEventListener('click', openSidebar);
+  if(closeBtn) closeBtn.addEventListener('click', closeSidebarFunc);
+  if(overlayDiv) overlayDiv.addEventListener('click', closeSidebarFunc);
+  document.querySelectorAll('.sidebar-nav a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      if(target) target.scrollIntoView({ behavior: 'smooth' });
+      closeSidebarFunc();
+    });
+  });
+  document.querySelectorAll('.nav-links a, .footer-col a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const hash = this.getAttribute('href');
+      if(hash && hash !== "#" && hash.startsWith('#')) {
+        const targetElem = document.querySelector(hash);
+        if(targetElem) { e.preventDefault(); targetElem.scrollIntoView({ behavior: 'smooth' }); }
+      }
+    });
+  });
+</script>
+</body>
+</html>
